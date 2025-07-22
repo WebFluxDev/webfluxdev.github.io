@@ -1,223 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WebFlux Innovations</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0; background: #f7f9fc; color: #222;
-  }
-  header {
-    background: #0b1e3d;
-    color: white;
-    padding: 20px 30px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  header img {
-    height: 48px;
-    width: auto;
-  }
-  header h1 {
-    font-weight: 700;
-    font-size: 1.8rem;
-    margin: 0;
-  }
-  main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-  section.intro {
-    font-size: 1.15rem;
-    margin-bottom: 40px;
-    line-height: 1.5;
-  }
-  section.options {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    gap: 15px;
-  }
-  .option {
-    background: white;
-    border: 2px solid #0b1e3d;
-    border-radius: 8px;
-    flex: 1;
-    padding: 25px 20px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.1rem;
-    user-select: none;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  .option:hover, .option.selected {
-    background-color: #0b1e3d;
-    color: white;
-  }
-  form {
-    background: white;
-    padding: 25px 30px;
-    border-radius: 8px;
-    box-shadow: 0 3px 8px rgb(0 0 0 / 0.15);
-    max-width: 600px;
-    margin: 0 auto 60px;
-  }
-  form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    margin-top: 18px;
-  }
-  form input[type="email"],
-  form input[type="tel"],
-  form textarea {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 1rem;
-    border: 2px solid #bbb;
-    border-radius: 6px;
-    resize: vertical;
-    transition: border-color 0.3s;
-  }
-  form input[type="email"]:focus,
-  form input[type="tel"]:focus,
-  form textarea:focus {
-    border-color: #0b1e3d;
-    outline: none;
-  }
-  form button {
-    margin-top: 30px;
-    background: #0b1e3d;
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    font-size: 1.15rem;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background-color 0.3s;
-  }
-  form button:hover {
-    background: #073063;
-  }
-  footer {
-    text-align: center;
-    font-size: 0.95rem;
-    margin-bottom: 40px;
-  }
-  footer a {
-    color: #0b1e3d;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 15px;
-    transition: color 0.3s;
-  }
-  footer a:hover {
-    color: #073063;
-    text-decoration: underline;
-  }
-  @media(max-width: 600px) {
-    section.options {
-      flex-direction: column;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebFlux Innovation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d0d0d;
+      color: #ffffff;
+      overflow-x: hidden;
     }
-    .option {
-      margin-bottom: 15px;
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
     }
-  }
-</style>
+
+    .logo {
+      width: 150px;
+      animation: pulse 2s infinite;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #0ff;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #0ff;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink .75s step-end infinite;
+    }
+
+    .background-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .electric-line {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #00f6ff, transparent);
+      animation: electric-flow 2s linear infinite;
+      position: absolute;
+      top: 25%;
+      opacity: 0.3;
+    }
+
+    .electric-line.delay {
+      top: 75%;
+      animation-delay: 1s;
+    }
+
+    .build-section {
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .build-animation {
+      display: inline-block;
+      position: relative;
+    }
+
+    .spark {
+      width: 20px;
+      height: 20px;
+      background: #0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #0ff;
+      animation: sparkPulse 1s infinite alternate;
+      margin: auto;
+    }
+
+    .building-text {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .content {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .glow-btn {
+      padding: 12px 24px;
+      border: none;
+      background: #111;
+      color: #0ff;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #0ff;
+      transition: all 0.3s ease;
+    }
+
+    .glow-btn:hover {
+      box-shadow: 0 0 18px #0ff;
+      background: #0ff;
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .contact-link {
+      display: inline-block;
+      margin: 20px;
+      color: #0ff;
+      text-decoration: none;
+      transition: transform 0.2s, text-shadow 0.3s;
+    }
+
+    .contact-link:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 0 #0ff); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 0 10px #0ff); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 0 #0ff); }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #0ff; }
+    }
+
+    @keyframes electric-flow {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes sparkPulse {
+      0% { transform: scale(1); box-shadow: 0 0 10px #0ff; }
+      100% { transform: scale(1.5); box-shadow: 0 0 25px #0ff; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <!-- Replace the src with your actual logo file path -->
-  <img src="logo.png" alt="WebFlux Innovations Logo" />
-  <h1>WebFlux Innovations</h1>
-</header>
+  <div class="background-lines">
+    <div class="electric-line"></div>
+    <div class="electric-line delay"></div>
+  </div>
 
-<main>
-  <section class="intro">
-    <p>At WebFlux Innovations, we bring your ideas to life with cutting-edge web and app solutions tailored just for you. Choose your path below to get started on transforming your digital presence.</p>
+  <header class="hero">
+    <img src="logo.png" alt="WebFlux Logo" class="logo">
+    <h1 class="tagline">Where your ideas can change the world</h1>
+  </header>
+
+  <section class="build-section">
+    <div class="build-animation">
+      <div class="spark"></div>
+      <p class="building-text">Building your website...</p>
+    </div>
   </section>
 
-  <section class="options" role="list" aria-label="Service options">
-    <div tabindex="0" class="option" data-value="Web Design">Web Design</div>
-    <div tabindex="0" class="option" data-value="App Development">App Development</div>
-    <div tabindex="0" class="option" data-value="Custom Software">Custom Software</div>
+  <section class="content">
+    <h2>What We Offer</h2>
+    <p>Custom websites, animations, and smart solutions.</p>
+    <button class="glow-btn">Learn More</button>
   </section>
 
-  <form id="contactForm" aria-label="Website project inquiry form">
-    <label for="email">Your Email</label>
-    <input type="email" id="email" name="email" placeholder="example@mail.com" required />
-
-    <label for="phone">Your Phone Number</label>
-    <input type="tel" id="phone" name="phone" placeholder="+27 68 123 4567" pattern="^\+?[0-9\s\-]{7,15}$" required />
-
-    <label for="description">Brief Description of Your Website or Project</label>
-    <textarea id="description" name="description" rows="5" placeholder="Describe what you want us to build..." required></textarea>
-
-    <input type="hidden" id="selectedOption" name="service" value="" />
-
-    <button type="submit">Submit Inquiry</button>
-  </form>
-</main>
-
-<footer>
-  <a href="https://wa.me/27681159631" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp link">WhatsApp</a>
-  <a href="mailto:WebFluxInnovation@gmail.com" aria-label="Email link">Email Us</a>
-</footer>
-
-<script>
-  // Option selection logic
-  const options = document.querySelectorAll('.option');
-  const selectedOptionInput = document.getElementById('selectedOption');
-
-  options.forEach(opt => {
-    opt.addEventListener('click', () => {
-      options.forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      selectedOptionInput.value = opt.getAttribute('data-value');
-    });
-    opt.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        opt.click();
-      }
-    });
-  });
-
-  // Form submission handler
-  document.getElementById('contactForm').addEventListener('submit', e => {
-    e.preventDefault();
-    if (!selectedOptionInput.value) {
-      alert('Please select a service option above.');
-      return;
-    }
-
-    const email = e.target.email.value.trim();
-    const phone = e.target.phone.value.trim();
-    const desc = e.target.description.value.trim();
-
-    // Simple email and phone pattern checks (HTML5 also handles)
-    if (!email || !phone || !desc) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-
-    // Here, you would send the form data to your server or email API
-    // For demonstration, just show an alert:
-    alert(
-      `Thank you for your inquiry!\n\nService: ${selectedOptionInput.value}\nEmail: ${email}\nPhone: ${phone}\nDescription: ${desc}`
-    );
-
-    // Reset form after submission
-    e.target.reset();
-    options.forEach(o => o.classList.remove('selected'));
-    selectedOptionInput.value = '';
-  });
-</script>
+  <footer>
+    <a href="https://wa.me/27681159631" target="_blank" class="contact-link">WhatsApp Us</a>
+    <a href="mailto:WebFluxInnovation@gmail.com" class="contact-link">Email Us</a>
+  </footer>
 </body>
 </html>
