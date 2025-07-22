@@ -1,97 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WebFlux Innovations</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
+      background: #f4f4f4;
+      color: #111;
+    }
+
+    header {
+      background: #0b1e3d;
+      color: white;
+      padding: 20px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      gap: 15px;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    header img {
+      height: 50px;
     }
 
-    .forge-loader {
-      width: 100px;
-      height: 100px;
-      border: 6px solid #444;
-      border-top: 6px solid #00fff7;
-      border-radius: 50%;
-      animation: spin 1.2s linear infinite;
-      margin-bottom: 20px;
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    p {
-      font-size: 1.1rem;
-      margin: 10px 0;
-      opacity: 0.85;
+    .intro {
+      font-size: 1.15rem;
+      margin-bottom: 30px;
     }
 
-    .contact-links {
-      margin-top: 30px;
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
     }
 
-    .contact-links a {
-      text-decoration: none;
-      color: #00fff7;
-      background-color: #111;
-      padding: 12px 20px;
-      border: 1px solid #00fff7;
+    .option {
+      flex: 1 1 250px;
+      border: 2px solid #0b1e3d;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .option:hover,
+    .option.selected {
+      background: #0b1e3d;
+      color: white;
+    }
+
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 5px;
+      border: 1px solid #ccc;
       border-radius: 6px;
-      margin: 10px;
-      transition: all 0.3s ease;
-      display: inline-block;
     }
 
-    .contact-links a:hover {
-      background-color: #00fff7;
-      color: #000;
+    button {
+      margin-top: 20px;
+      background: #0b1e3d;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
-    .logo-flare {
-      position: absolute;
-      top: 10%;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, #00fff7 0%, transparent 60%);
-      opacity: 0.08;
-      border-radius: 50%;
-      animation: pulse 3s ease-in-out infinite;
+    button:hover {
+      background: #073063;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.08; }
-      50% { transform: scale(1.2); opacity: 0.15; }
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    footer a {
+      margin: 0 10px;
+      color: #0b1e3d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="logo-flare"></div>
-  <div class="forge-loader"></div>
-  <h1>WebFlux Innovations</h1>
-  <p>Forging your ideas into reality...</p>
-  <p>Our site is currently being built.</p>
 
-  <div class="contact-links">
-    <a href="https://wa.me/27681159631" target="_blank">Chat on WhatsApp</a>
-    <a href="mailto:WebFluxInnovation@gmail.com">Email Us</a>
+  <header>
+    <img src="logo.png" alt="WebFlux Logo" />
+    <h1>WebFlux Innovations</h1>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      We bring your digital dreams to life — choose a service and tell us what you need. We’ll take care of the rest.
+    </div>
+
+    <div class="options">
+      <div class="option" data-value="Website Design">Website Design</div>
+      <div class="option" data-value="App Development">App Development</div>
+      <div class="option" data-value="Custom Software">Custom Software</div>
+    </div>
+
+    <form action="https://formsubmit.co/WebFluxInnovation@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New WebFlux Inquiry">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" id="selectedService" name="Service" />
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="Email" required placeholder="example@email.com" />
+
+      <label for="phone">Your Phone Number</label>
+      <input type="tel" id="phone" name="Phone" required placeholder="+27 68 123 4567" />
+
+      <label for="desc">Describe Your Project</label>
+      <textarea id="desc" name="Description" rows="5" required placeholder="Tell us what you want your website/app to do..."></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
   </div>
+
+  <footer>
+    <a href="https://wa.me/27681159631" target="_blank">WhatsApp</a>
+    <a href="mailto:WebFluxInnovation@gmail.com">Email Us</a>
+  </footer>
+
+  <script>
+    const options = document.querySelectorAll('.option');
+    const selectedInput = document.getElementById('selectedService');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedInput.value = option.getAttribute('data-value');
+      });
+    });
+  </script>
 </body>
 </html>
