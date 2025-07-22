@@ -4,109 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WebFlux Innovations</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      margin: 0;
+      background: black;
       color: white;
-      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
-    header {
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(#111, #000);
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .current {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0,255,255,0.05),
+        rgba(0,255,255,0.05) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+      animation: flicker 2s infinite linear;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    .container {
       text-align: center;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.3);
+      padding-top: 100px;
     }
 
-    header h1 {
-      font-size: 3rem;
-      animation: fadeInDown 1s ease-in-out;
+    .logo {
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px;
     }
 
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
+    .tagline {
+      font-size: 2rem;
+      color: cyan;
+      animation: glow 3s ease-in-out infinite alternate;
     }
 
-    .button-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px cyan; }
+      100% { text-shadow: 0 0 25px cyan; }
     }
 
-    .btn {
-      background: #00c6ff;
-      background: linear-gradient(to right, #0072ff, #00c6ff);
-      padding: 1rem 2rem;
-      border-radius: 30px;
-      border: none;
+    .links {
+      margin-top: 40px;
+    }
+
+    .links a {
       color: white;
-      font-size: 1rem;
+      background-color: cyan;
       text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin: 10px;
+      display: inline-block;
     }
 
-    .btn:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.5);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .links a:hover {
+      background-color: deepskyblue;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1 data-aos="zoom-in">WebFlux Innovations</h1>
-    <p data-aos="fade-up">Where your ideas can change the world</p>
-  </header>
-
-  <section data-aos="fade-right">
-    <h2>Get in Touch</h2>
-    <p>Feel free to reach out to us for any web or app development inquiries.</p>
-
-    <div class="button-container">
-      <a href="https://wa.me/27681159631" target="_blank" class="btn">WhatsApp</a>
-      <a href="mailto:WebFluxInnovation@gmail.com" class="btn">Email</a>
+  <div class="background">
+    <div class="current"></div>
+  </div>
+  <div class="container">
+    <img src="webflux_logo_placeholder.png" alt="WebFlux Logo" class="logo"/>
+    <div class="tagline">Where your ideas change the world</div>
+    <div class="links">
+      <a href="https://wa.me/27681159631" target="_blank">Chat on WhatsApp</a>
+      <a href="mailto:WebFluxInnovation@gmail.com">Send an Email</a>
     </div>
-  </section>
-
-  <footer data-aos="fade-up">
-    &copy; 2025 WebFlux Innovations. All rights reserved.
-  </footer>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1200
-    });
-  </script>
+  </div>
 </body>
 </html>
