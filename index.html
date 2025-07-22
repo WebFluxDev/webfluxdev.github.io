@@ -1,173 +1,223 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebFlux Innovation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebFlux Innovations</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0; background: #f7f9fc; color: #222;
+  }
+  header {
+    background: #0b1e3d;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  header img {
+    height: 48px;
+    width: auto;
+  }
+  header h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  section.intro {
+    font-size: 1.15rem;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  section.options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 15px;
+  }
+  .option {
+    background: white;
+    border: 2px solid #0b1e3d;
+    border-radius: 8px;
+    flex: 1;
+    padding: 25px 20px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    user-select: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .option:hover, .option.selected {
+    background-color: #0b1e3d;
+    color: white;
+  }
+  form {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.15);
+    max-width: 600px;
+    margin: 0 auto 60px;
+  }
+  form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 18px;
+  }
+  form input[type="email"],
+  form input[type="tel"],
+  form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 2px solid #bbb;
+    border-radius: 6px;
+    resize: vertical;
+    transition: border-color 0.3s;
+  }
+  form input[type="email"]:focus,
+  form input[type="tel"]:focus,
+  form textarea:focus {
+    border-color: #0b1e3d;
+    outline: none;
+  }
+  form button {
+    margin-top: 30px;
+    background: #0b1e3d;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    font-size: 1.15rem;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s;
+  }
+  form button:hover {
+    background: #073063;
+  }
+  footer {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+  }
+  footer a {
+    color: #0b1e3d;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px;
+    transition: color 0.3s;
+  }
+  footer a:hover {
+    color: #073063;
+    text-decoration: underline;
+  }
+  @media(max-width: 600px) {
+    section.options {
+      flex-direction: column;
     }
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-      overflow-x: hidden;
+    .option {
+      margin-bottom: 15px;
     }
-    .loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0a0a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .pulse {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 4px solid #0ff;
-      animation: pulse 1.2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.9); opacity: 0.7; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(0.9); opacity: 0.7; }
-    }
-    header {
-      text-align: center;
-      padding: 5rem 1rem;
-      background: radial-gradient(circle at center, #101010 0%, #050505 100%);
-    }
-    header img {
-      height: 100px;
-      animation: flicker 3s infinite;
-    }
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
-    }
-    h1 {
-      font-size: 3rem;
-      margin-top: 1rem;
-      color: #0ff;
-      animation: typewriter 3s steps(20) 1s forwards;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #0ff;
-      width: 0;
-    }
-    @keyframes typewriter {
-      to {
-        width: 100%;
-        border-right: none;
-      }
-    }
-    .section {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .electric-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at center, #111 0%, #000 100%);
-      overflow: hidden;
-    }
-    .line {
-      position: absolute;
-      width: 2px;
-      height: 80px;
-      background: #0ff;
-      animation: zap 1.5s linear infinite;
-      opacity: 0.2;
-    }
-    @keyframes zap {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0.3;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh);
-        opacity: 0.1;
-      }
-    }
-    .btn {
-      padding: 1rem 2rem;
-      background: #0ff;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-radius: 10px;
-    }
-    .btn:hover {
-      background: #00cccc;
-      box-shadow: 0 0 15px #0ff;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="loader" id="loader">
-    <div class="pulse"></div>
-  </div>  <div class="electric-bg" id="bg-lines"></div>  <header>
-    <img src="webflux-logo.png" alt="WebFlux Logo" />
-    <h1>Where Your Ideas Change The World</h1>
-  </header>  <section class="section fade-in">Our Services</section>
-  <section class="section fade-in">Our Portfolio</section>
-  <section class="section fade-in">Pricing Plans</section>
-  <section class="section fade-in">Contact Us</section>  <script>
-    // Loader screen
-    window.addEventListener("load", () => {
-      document.getElementById("loader").style.display = "none";
-    });
+<header>
+  <!-- Replace the src with your actual logo file path -->
+  <img src="logo.png" alt="WebFlux Innovations Logo" />
+  <h1>WebFlux Innovations</h1>
+</header>
 
-    // Fade in on scroll
-    const fadeEls = document.querySelectorAll(".fade-in");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    });
-    fadeEls.forEach(el => observer.observe(el));
+<main>
+  <section class="intro">
+    <p>At WebFlux Innovations, we bring your ideas to life with cutting-edge web and app solutions tailored just for you. Choose your path below to get started on transforming your digital presence.</p>
+  </section>
 
-    // Electric heartbeat lines
-    const bg = document.getElementById("bg-lines");
-    for (let i = 0; i < 40; i++) {
-      const line = document.createElement("div");
-      line.className = "line";
-      line.style.left = `${Math.random() * 100}vw`;
-      line.style.animationDelay = `${Math.random() * 2}s`;
-      bg.appendChild(line);
+  <section class="options" role="list" aria-label="Service options">
+    <div tabindex="0" class="option" data-value="Web Design">Web Design</div>
+    <div tabindex="0" class="option" data-value="App Development">App Development</div>
+    <div tabindex="0" class="option" data-value="Custom Software">Custom Software</div>
+  </section>
+
+  <form id="contactForm" aria-label="Website project inquiry form">
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" placeholder="example@mail.com" required />
+
+    <label for="phone">Your Phone Number</label>
+    <input type="tel" id="phone" name="phone" placeholder="+27 68 123 4567" pattern="^\+?[0-9\s\-]{7,15}$" required />
+
+    <label for="description">Brief Description of Your Website or Project</label>
+    <textarea id="description" name="description" rows="5" placeholder="Describe what you want us to build..." required></textarea>
+
+    <input type="hidden" id="selectedOption" name="service" value="" />
+
+    <button type="submit">Submit Inquiry</button>
+  </form>
+</main>
+
+<footer>
+  <a href="https://wa.me/27681159631" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp link">WhatsApp</a>
+  <a href="mailto:WebFluxInnovation@gmail.com" aria-label="Email link">Email Us</a>
+</footer>
+
+<script>
+  // Option selection logic
+  const options = document.querySelectorAll('.option');
+  const selectedOptionInput = document.getElementById('selectedOption');
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedOptionInput.value = opt.getAttribute('data-value');
+    });
+    opt.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        opt.click();
+      }
+    });
+  });
+
+  // Form submission handler
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!selectedOptionInput.value) {
+      alert('Please select a service option above.');
+      return;
     }
-  </script></body>
+
+    const email = e.target.email.value.trim();
+    const phone = e.target.phone.value.trim();
+    const desc = e.target.description.value.trim();
+
+    // Simple email and phone pattern checks (HTML5 also handles)
+    if (!email || !phone || !desc) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    // Here, you would send the form data to your server or email API
+    // For demonstration, just show an alert:
+    alert(
+      `Thank you for your inquiry!\n\nService: ${selectedOptionInput.value}\nEmail: ${email}\nPhone: ${phone}\nDescription: ${desc}`
+    );
+
+    // Reset form after submission
+    e.target.reset();
+    options.forEach(o => o.classList.remove('selected'));
+    selectedOptionInput.value = '';
+  });
+</script>
+</body>
 </html>
