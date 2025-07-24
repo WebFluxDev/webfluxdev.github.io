@@ -3,175 +3,179 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WebFlux Innovations</title>
+  <title>WebFlux Innovation</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
-      color: #111;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #0e0e0e;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    canvas#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     header {
-      background: #0b1e3d;
-      color: white;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    header img {
-      height: 50px;
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      margin: 0;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .intro {
-      font-size: 1.15rem;
-      margin-bottom: 30px;
-    }
-
-    .options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-
-    .option {
-      flex: 1 1 250px;
-      border: 2px solid #0b1e3d;
-      padding: 20px;
       text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
+      padding: 100px 20px 40px;
     }
 
-    .option:hover,
-    .option.selected {
-      background: #0b1e3d;
-      color: white;
+    h1 {
+      font-size: 3em;
+      color: #00f7ff;
+      text-shadow: 0 0 20px #00f7ff;
+      animation: flicker 3s infinite;
     }
 
-    form {
-      background: #fff;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.4;
+      }
     }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
+    p.tagline {
+      font-size: 1.5em;
+      color: #ccc;
+      margin-top: 10px;
+      animation: fadeIn 2s ease-out forwards;
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 1rem;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
     }
 
-    button {
-      margin-top: 20px;
-      background: #0b1e3d;
-      color: white;
-      padding: 12px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    button:hover {
-      background: #073063;
+    .section-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #00f7ff;
     }
 
     footer {
       text-align: center;
-      padding: 30px 10px;
-    }
-
-    footer a {
-      margin: 0 10px;
-      color: #0b1e3d;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
+      padding: 20px;
+      font-size: 0.9em;
+      background-color: #111;
+      color: #888;
     }
   </style>
 </head>
 <body>
+  <canvas id="bg"></canvas>
 
   <header>
-    <img src="logo.png" alt="WebFlux Logo" />
-    <h1>WebFlux Innovations</h1>
+    <h1>WebFlux Innovation</h1>
+    <p class="tagline">Where your ideas change the world</p>
   </header>
 
-  <div class="container">
-    <div class="intro">
-      We bring your digital dreams to life — choose a service and tell us what you need. We’ll take care of the rest.
-    </div>
+  <section id="about">
+    <div class="section-title">About Us</div>
+    <p>We build powerful websites and applications that bring your ideas to life through innovative design and development.</p>
+  </section>
 
-    <div class="options">
-      <div class="option" data-value="Website Design">Website Design</div>
-      <div class="option" data-value="App Development">App Development</div>
-      <div class="option" data-value="Custom Software">Custom Software</div>
-    </div>
+  <section id="services">
+    <div class="section-title">Our Services</div>
+    <ul>
+      <li>Web Development</li>
+      <li>App Design</li>
+      <li>Creative Prototyping</li>
+      <li>Brand Identity</li>
+    </ul>
+  </section>
 
-    <form action="https://formsubmit.co/WebFluxInnovation@gmail.com" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="New WebFlux Inquiry">
-      <input type="hidden" name="_template" value="box">
-      <input type="hidden" id="selectedService" name="Service" />
-
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="Email" required placeholder="example@email.com" />
-
-      <label for="phone">Your Phone Number</label>
-      <input type="tel" id="phone" name="Phone" required placeholder="+27 68 123 4567" />
-
-      <label for="desc">Describe Your Project</label>
-      <textarea id="desc" name="Description" rows="5" required placeholder="Tell us what you want your website/app to do..."></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+  <section id="contact">
+    <div class="section-title">Contact</div>
+    <p>Email: <a href="mailto:WebFluxInnovation@gmail.com" style="color:#00f7ff;">WebFluxInnovation@gmail.com</a></p>
+    <p>Phone: <a href="tel:+27681159631" style="color:#00f7ff;">+27 68 115 9631</a></p>
+  </section>
 
   <footer>
-    <a href="https://wa.me/27681159631" target="_blank">WhatsApp</a>
-    <a href="mailto:WebFluxInnovation@gmail.com">Email Us</a>
+    &copy; 2025 WebFlux Innovation. All rights reserved.
   </footer>
 
   <script>
-    const options = document.querySelectorAll('.option');
-    const selectedInput = document.getElementById('selectedService');
-
-    options.forEach(option => {
-      option.addEventListener('click', () => {
-        options.forEach(o => o.classList.remove('selected'));
-        option.classList.add('selected');
-        selectedInput.value = option.getAttribute('data-value');
+    // Scroll reveal
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
       });
+    }, {
+      threshold: 0.1
     });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Electric line background
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    const lines = [];
+    for (let i = 0; i < 100; i++) {
+      lines.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2,
+        alpha: Math.random()
+      });
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(14,14,14,0.2)";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.strokeStyle = "#00f7ff";
+      ctx.lineWidth = 1;
+
+      lines.forEach(line => {
+        ctx.beginPath();
+        ctx.moveTo(line.x, line.y);
+        line.x += line.dx;
+        line.y += line.dy;
+
+        if (line.x < 0 || line.x > width) line.dx *= -1;
+        if (line.y < 0 || line.y > height) line.dy *= -1;
+
+        ctx.lineTo(line.x + Math.sin(Date.now() * 0.01) * 10, line.y + Math.cos(Date.now() * 0.01) * 10);
+        ctx.stroke();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
   </script>
 </body>
 </html>
