@@ -10,8 +10,7 @@
     body { line-height: 1.6; background: #f9f9f9; color: #333; }
 
     /* Header */
-    header { background: #111; color: #fff; display: flex; justify-content: space-between;
-      align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
+    header { background: #111; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
     header .logo { height: 40px; }
     nav a { color: #fff; margin: 0 15px; text-decoration: none; transition: color 0.3s; }
     nav a:hover { color: #00c2ff; }
@@ -27,7 +26,7 @@
 
     /* Pricing */
     .pricing-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-    .card { background: #fff; border-radius: 10px; padding: 20px; width: 250px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: relative; transition: transform 0.3s; }
+    .card { background: #fff; border-radius: 10px; padding: 20px; width: 250px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s; }
     .card:hover { transform: translateY(-5px); }
     .price { font-size: 1.5rem; margin: 10px 0; color: #0077ff; }
     .order-btn { background: #0077ff; color: #fff; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
@@ -72,37 +71,28 @@
   <section id="pricing">
     <h2>Our Pricing Plans</h2>
     <div class="pricing-cards">
-      <!-- $1 Pack -->
       <div class="card">
         <h3>$1 Pack</h3>
         <p class="price">$1</p>
-        <p>Basic layout only</p>
-        <p>Static pages, watermark included for $1 clients</p>
-        <p>Limited functionality, no animations</p>
+        <p>Basic layout only (demo version)</p>
         <button class="order-btn" data-plan="$1 Pack">Order Now</button>
       </div>
-      <!-- $75 Pack -->
       <div class="card">
         <h3>Starter</h3>
         <p class="price">$75</p>
         <p>1 Page Website</p>
-        <p>Basic interactive elements</p>
         <button class="order-btn" data-plan="Starter Pack">Order Now</button>
       </div>
-      <!-- $150 Pack -->
       <div class="card">
         <h3>Business</h3>
         <p class="price">$150</p>
         <p>Up to 5 Pages</p>
-        <p>Advanced layout + interactive elements</p>
         <button class="order-btn" data-plan="Business Pack">Order Now</button>
       </div>
-      <!-- $300 Pack -->
       <div class="card">
         <h3>Premium</h3>
         <p class="price">$300</p>
-        <p>Full custom solution</p>
-        <p>Animations & complete branding control</p>
+        <p>Full Custom Solution</p>
         <button class="order-btn" data-plan="Premium Pack">Order Now</button>
       </div>
     </div>
@@ -168,15 +158,26 @@
     // Order form submit
     document.getElementById("order-form").addEventListener("submit", e => {
       e.preventDefault();
-      alert(`✅ Your order for ${planInput.value} has been placed!`);
+      // Send order details to you via email or backend (replace with real email or backend)
+      const orderDetails = {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        plan: e.target.plan.value,
+      };
+      console.log("Order received:", orderDetails);
+
+      // Simulate sending license key & EULA to client
+      alert(`✅ Order received!\nYour EULA & license key will be sent to ${orderDetails.email}.`);
       modal.style.display = "none";
+      e.target.reset();
     });
 
     // Contact form submit
     document.getElementById("contact-form").addEventListener("submit", e => {
       e.preventDefault();
       alert("📨 Your message has been sent!");
+      e.target.reset();
     });
   </script>
 </body>
-</html>
+</html> 
